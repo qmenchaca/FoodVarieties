@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+  <title>
+    Add Variety for {{food.name}}
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1> New Variety </h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+    <div class='grid-container'>
+    <div class='row'>
+      <form action="{{url_for('newVariety', food_id=food.id )}}" method = 'POST'>
+      <div class='form-group'>
+        <label for='name'>Name:</label>
+        <input type ='text' size='30' name='name'>
+        <br>
+        <label for='description'>Description:</label>
+        <textarea name = 'description' rows='5' cols='40' > </textarea>
+        <br>
+        <label for='picture'>URL for Picture:</label>
+        <input type ='text' size='30' name='picture'>
+        <br>
+        <label for='characteristics'>Characteristics:</label>
+        <div name='characteristics' class='char-button-container'>
+
+          {% for c in chars %}
+            <input class='char-buttons' type ='checkbox' name='char' value="{{c.char}}">{{c.char}}<br>
+          {% endfor %}
+          Contact the administrator if you would like to add more characteristics to our database!
+
+        <br>
+        <input type='submit' value='Create'>
+     </div>
+     </form>
+   </div>
+   </div>
+   <br>
+   <center>
+   <a class='btn red small' href = "{{url_for('foodVarieties',food_id = food.id)}}">Nevermind, take me back to list of {{food.name}}'s current varieties</a>
+   </center>
+
+
+{% endblock %}

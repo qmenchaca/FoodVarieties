@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+  <title>
+    Fruit & Veggie Variety Database - Delete
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1>Delete {{var.name}}</h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+   <div class='grid-container'>
+     <p class='red-text'>Are you SURE you want to delete {{var.name}} as a variety of {{food.name}}?</p>
+
+     <p class='red-text'>This is IRREVERSIBLE.</p>
+
+    <form action="{{url_for('deleteVariety', food_id=food.id, variety_id=var.id )}}" method = 'POST'>
+    <br>
+    <button type="submit" value="Submit" class='btn blue small'>Yes, I'm sure</button>
+    <br>
+    <a href = "/foods/{{food.id}}/"><button type="button" class="btn red small">No! Nevermind, take me back to the database.</button></a>
+
+    </form>
+   </div>
+
+{% endblock %}

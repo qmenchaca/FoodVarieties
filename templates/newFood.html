@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+<title>
+  Fruit & Veggie Variety Database - Add
+</title>
+
+<head>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1>New Food</h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+   <div class='grid-container'>
+    <div class='row'>
+      <form action="{{url_for('newFood')}}" method = 'POST'>
+          <div class='form-group'>
+            <label for="name">Name:</label>
+            <input type ='text' size='30' name='name'><br>
+            <label for='picture'>URL for Picture:</label>
+            <input type ='text' size='30' name='picture'>
+            <br>
+
+            <button class='btn blue small' type="submit" name="redirect_choice" value="Varieties">Save and add varieties!</button>
+            <button class='btn green small' type="submit" name="redirect_choice" value="ReturnDatabase">Save and return to the database</button>
+            <a href = {{url_for('showFoods')}}><button type="button" class='btn red small'>Nevermind, take me back to the database</button></a>
+          </div>
+          <br>
+      </form>
+
+     </div>
+    </div>
+{% endblock %}

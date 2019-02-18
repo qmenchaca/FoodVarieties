@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+  <title>
+    Fruit & Veggie Variety Database - Unauthorized!
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1>Unauthorized to edit {{food.name}}</h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+    <p class='red-text'>Sorry, you are not allowed to modify or delete {{food.name}}.</p>
+      <a href = "/foods"><button type="button" class="btn red small">Take me back to the database</button></a>
+   </div>
+{% endblock %}

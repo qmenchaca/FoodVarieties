@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+  <title>
+    Fruit & Veggie Variety Database - Edit
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1>Edit {{food.name}}</h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+    <div class='grid-container'>
+      <form action="{{url_for('editFood', food_id=food.id) }}" method = 'POST'>
+        <label for="name">Name:</label>
+        <input type ='text' size='30' name='name' value="{{food.name}}">
+        <br>
+        <label for='picture'>URL for Picture:</label>
+	  <input type ='text' size='30' name='picture' value="{{food.picture}}">
+        <br>
+
+        <button type="submit" name="redirect_choice" value="Varieties" class="btn blue small">Save and add varieties!</button>
+        <button type="submit" name="redirect_choice" value="ReturnDatabase" class="btn green small">Save and return to the database</button>
+        <a href = "/foods"><button type="button" class='btn red small'>Nevermind, take me back to the database</button></a>
+     </form>
+   </div>
+{% endblock %}

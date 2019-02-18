@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+  <title>
+    Edit {{var.name}} for {{food.name}}
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+  <div class="row divider green">
+     <div class="col-md-12"></div>
+   </div>
+   <div class="row banner menu">
+      <div class="col-md-11 col-md-offset-1 padding-left">
+        <h1> Edit {{var.name}} for {{food.name}} </h1>
+      </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+  <div class='grid-container'>
+    <form action="{{url_for('editVariety', variety_id=var.id, food_id=food.id )}}" method = 'POST'>
+
+	<label for='name'>Name:</label>
+	  <input type ='text' size='30' name='name' value="{{var.name}}">
+        <br>
+	<label for='description'>Description</label>
+	  <textarea name = 'description' rows='5' cols='40' >{{var.description}}</textarea>
+        </br>
+
+        <label for='picture'>URL for Picture:</label>
+	  <input type ='text' size='30' name='picture' value="{{var.picture}}">
+        <br>
+
+	<label for='characteristics'>Characteristics:</label>
+                <div name='characteristics' class='char-button-container'>
+                {% for c in chars %}
+                  {% if c in var.characteristics %}
+                    <input class='char-buttons' type ='checkbox' name='char' value="{{c.char}}" checked>{{c.char}}<br>
+                  {% else %}
+                    <input class='char-buttons' type ='checkbox' name='char' value="{{c.char}}">{{c.char}}<br>
+                  {% endif %}
+                {% endfor %}
+                </div>
+<br>
+<input type='submit' class='btn blue small' value='Submit Changes'>
+<br>
+<a class='btn red small' href = "{{url_for('foodVarieties', food_id = food.id)}}">Nevermind, take me back to {{food.name}}</a>
+
+ </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+
+  <title>
+    Fruit & Veggie Variety Database - Delete
+  </title>
+
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+   <div class = "row banner main">
+     <div class='col-md-1'></div>
+     <div class="col-md-11 padding-left">
+       <h1>Delete {{var.name}}</h1>
+     </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+   <div class='grid-container'>
+     <p class='red-text'>Sorry, you are not the user associated with {{var.name}}, so you are not allowed to edit it.</p>
+
+    <br>
+    <a href = "/foods/{{food.id}}/"><button type="button" class="btn red small">Take me back to the database</button></a>
+
+   </div>
+
+{% endblock %}

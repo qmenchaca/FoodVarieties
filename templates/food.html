@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+
+  <title>
+    Fruit & Veggie Variety Database
+  </title>
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+{% block header %}
+    <div class="row divider blue">
+      <div class="col-md-12"></div>
+    </div>
+
+    <div class="row banner main">
+      <div class="col-md-2"></div>
+      <div class="col-md-11 padding-left">
+        <h1>Fruits & Veggies</h1>
+      </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class = 'flash'>
+                          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+        
+            <ul>
+            {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    
+    </div>
+
+   {% if username != None %}
+     <div class="row padding-top padding-bottom">
+           <div class="col-md-1"></div>
+           <div class="col-md-10 padding-none">
+                   <a href="{{url_for('newFood')}}">
+                           <button class="btn btn-default" id="new-food">
+                                   <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>Add Food
+                           </button>
+                   </a>
+           </div>
+           <div class="col-md-1"></div>
+     </div>
+   {% endif %}
+
+    {% if foods %}
+      <div class="grid-container">
+      {% for f in foods %}
+        <div class="pane">
+        <div class="row padding-top padding-bottom">
+          <div class="col-md-1"></div>
+          <div class="col-md-11 padding-none">
+            {% if f.picture %} <img src={{f.picture}} height="200" width="200"></img>
+            {% endif %}
+            <a href="{{url_for('foodVarieties', food_id=f.id)}}"><h3>{{f.name}}</h3></a><br>
+            {% if f.protected == False %}
+            <div class="button-container">
+              <a class="btn blue"  href ="{{url_for('editFood', food_id=f.id)}}">Edit Food</a>
+              <a class="btn red" href ="{{url_for('deleteFood', food_id=f.id)}}">Delete Food</a><br>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <br>
+      </div>
+      {% endfor %}
+      </div>
+    {% else %}
+      <p> There are no foods here! How boring... </p>
+    {% endif %}
+
+  </body>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "main.html" %}
+<title>{{food.name}}'s Varieties</title>
+
+<head>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+{% block header %}
+    <div class="row divider blue">
+      <div class="col-md-12"></div>
+    </div>
+    
+    <div class="row banner main">
+      <div class="col-md-1"></div>
+      <div class="col-md-11 padding-left">
+        <h1>{{food.name}}</h1>
+      </div>
+    </div>
+{% endblock %}
+    
+{% block content %}
+    <div class = 'flash'>
+       {% with messages = get_flashed_messages() %}
+       {% if messages %}
+
+         <ul>
+         {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+         {% endfor %}
+        </ul>
+      {% endif %}
+      {% endwith %}
+
+    </div>
+
+
+   {% if username != None %}
+     <div class="row padding-top padding-bottom">
+           <div class="col-md-1"></div>
+           <div class="col-md-10 padding-none">
+                   <a href="{{url_for('newVariety', food_id=food.id)}}">
+                           <button class="btn btn-default" id="new-food">
+                                   <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>Add Variety
+                           </button>
+                   </a>
+           </div>
+           <div class="col-md-1"></div>
+     </div>
+   {% endif %}
+
+    {% if varieties != [] %}
+
+      <table>
+      <th>Name</th>
+      <th>Description</th>
+      {% for c in chars %}
+        <th>{{c.char}}</th>
+      {% endfor %}
+      {% for v in varieties %}
+      <tr>
+        <td>
+          {% if v.picture %} <img src={{v.picture}} height="100" width="100"></img><br>
+          {% endif %}
+           {{v.name}} <br>
+          {% if v.user_id == current_user_id %}
+            <div class='button-container'>
+            <a class='btn blue small' href="{{url_for('editVariety', food_id=food.id,variety_id=v.id)}}">Edit</a>
+
+            <a class='btn red small' href="{{url_for('deleteVariety', food_id=food.id,variety_id=v.id)}}">Delete</a>
+            </div>
+          {% endif %}
+        </td>
+
+        <td>{{v.description}}</td>
+
+        {% for c in chars %}
+          {% if c in v.characteristics %}
+            <td> X </td>
+          {% else %}
+            <td> </td>
+          {% endif %}
+        {% endfor %}
+
+        </tr>
+      {% endfor %}
+      </table>
+
+    {% else %}
+      <p>There's nothing here... we might starve!</p>
+    {% endif %}
+
+  <a class='btn red small' href="/foods">Back to All Foods</a>
+{% endblock %}
