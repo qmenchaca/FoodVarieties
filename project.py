@@ -216,8 +216,11 @@ def newFood():
         return render_template('clientOAuth.html')
     if request.method == 'POST':
         newFood = Food(name=request.form['name'])
+        if not newFood.validate_object():
+            flash("The name field is blank, which is not allowed!")
+            return render_template('newFood.html')
 
-        # Only add a food if it is valid
+        # Only add a picture if it is valid
         prospective_url = bleach.clean(request.form['picture'])
         url_resp = Food.verify_valid_pic(prospective_url)
 
@@ -245,6 +248,9 @@ def editFood(food_id):
         return render_template('clientOAuth.html')
     if request.method == 'POST':
         food.name = request.form['name']
+        if not food.validate_object():
+            flash("The name field is blank, which is not allowed!")
+            return render_template('editFood.html')
 
         prospective_url = bleach.clean(request.form['picture'])
         url_resp = Food.verify_valid_pic(prospective_url)
@@ -278,6 +284,7 @@ def deleteFood(food_id):
 
 
 @app.route('/foods/<int:food_id>/')
+@app.route('/foods/<int:food_id>/varieties')
 def foodVarieties(food_id):
     # Get all varieties for this food
     food = db.session.query(Food).filter_by(id=food_id).one()
@@ -298,6 +305,14 @@ def foodVarietiesJSON(food_id):
 
     return jsonify(Varieties=[v.serialize for v in varieties])
 
+# Endpoint for API to look at varieties
+@app.route('/foods/<int:food_id>/<int:variety_id>/JSON')
+@app.route('/foods/<int:food_id>/varieties/<int:variety_id>/JSON')
+def foodVarietyJSON(food_id,variety_id):
+    v = db.session.query(Variety).filter_by(id=variety_id).one()
+
+    return jsonify(Variety=v.serialize)
+
 
 @app.route('/foods/<int:food_id>/new', methods=['GET', 'POST'])
 def newVariety(food_id):
@@ -305,11 +320,17 @@ def newVariety(food_id):
     if current_user is None:
         return render_template('clientOAuth.html')
     food = db.session.query(Food).filter_by(id=food_id).one()
+    existingChars = db.session.query(Characteristic).all()
     if request.method == 'POST':
         newVar = Variety(name=request.form['name'],
                          description=request.form['description'],
                          user_id=current_user.id,
                          food_id=food_id)
+        if not newVar.validate_object():
+            flash("The name field is blank, which is not allowed!")
+            return render_template('newVariety.html',
+                                   food=food,
+                                   chars=existingChars)
 
         prospective_url = bleach.clean(request.form['picture'])
         url_resp = Variety.verify_valid_pic(prospective_url)
@@ -325,7 +346,6 @@ def newVariety(food_id):
         flash("New variety created!")
         return redirect(url_for('foodVarieties', food_id=food.id))
     else:
-        existingChars = db.session.query(Characteristic).all()
         return render_template('newVariety.html',
                                food=food,
                                chars=existingChars)
@@ -336,6 +356,7 @@ def newVariety(food_id):
 def editVariety(food_id, variety_id):
     existingVar = db.session.query(Variety).filter_by(id=variety_id).one()
     food = db.session.query(Food).filter_by(id=food_id).one()
+    existingChars = db.session.query(Characteristic).all()
     current_user = get_user()
     if current_user is None or login_session['email'] != current_user.email:
         # Cannot edit another user's varieties
@@ -347,6 +368,13 @@ def editVariety(food_id, variety_id):
         # Do the edit
         existingVar.name = request.form['name']
         existingVar.description = request.form['description']
+
+        if not existingVar.validate_object():
+            flash("The name field is blank, which is not allowed!")
+            return render_template('editVariety.html',
+                                   food=food,
+                                   var=existingVar,
+                                   chars=existingChars)
 
         # Only save the provided URL if it actually links to a picture
         prospective_url = bleach.clean(request.form['picture'])
@@ -363,7 +391,6 @@ def editVariety(food_id, variety_id):
         return redirect(url_for('foodVarieties', food_id=food_id))
     else:
         # Return the form
-        existingChars = db.session.query(Characteristic).all()
         return render_template('editVariety.html',
                                food=food,
                                var=existingVar,

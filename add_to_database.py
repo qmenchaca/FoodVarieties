@@ -61,7 +61,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Roxbury Russet',
-              description='The first apple variety in America. Great for making cider.',
+              description="The first apple variety in America." \
+                          " Great for making cider.",
               food=apple,
               characteristics=[sweet, tart, storage, tangy],
               picture='https://newenglandapples.files.wordpress.com/2011/12/roxbury_russet.jpg?w=100',
@@ -70,7 +71,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Jonagold',
-              description='A recent cultivar, this apple is very popular in Europe.',
+              description="A recent cultivar, " \
+                          "this apple is very popular in Europe.",
               food=apple,
               characteristics=[sweet, juicy, tart],
               picture='https://images-na.ssl-images-amazon.com/images/I/81JfUCij2US._SY355_.jpg',
@@ -104,7 +106,9 @@ session.add(orange)
 session.commit()
 
 var = Variety(name='Valencia',
-              description='The only major orange variety harvested during the summer, it was developed in Southern California in the mid-19th century.',
+              description="The only major orange variety harvested " \
+                          "during the summer, it was developed in " \
+                          "Southern California in the mid-19th century.",
               food=orange,
               characteristics=[sweet, juicy],
               picture='http://www.internationalcitrusandproduce.com/wp-content/uploads/2012/01/valencia-orange1.jpg',
@@ -122,7 +126,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Blood',
-              description='The blood orange may long angry, but it is very rich in antioxidants.',
+              description="The blood orange may long angry, " \
+                          "but it is very rich in antioxidants.",
               food=orange,
               characteristics=[juicy, tangy],
               picture='http://rivista-cdn.hvmag.com//images/cache/cache_a/cache_4/cache_6/Fotolia_104580946_Subscription_Monthly_L-e5edc64a.jpeg?ver=1548031542&aspectratio=1.5009380863039',
@@ -148,7 +153,8 @@ session.commit()
 
 
 var = Variety(name='Russian Banana',
-              description='These funny-shaped potatoes are hard to grow, but worth the effort!',
+              description="These funny-shaped potatoes are hard to grow, " \
+                          "but worth the effort!",
               food=potato,
               characteristics=[storage, mild, sweet],
               picture='https://www.smartkitchen.com/assets/images/resources/large/1281720238Potatoes-Russian%20Banana%20Fingerling%20Potatoes.jpg',
@@ -165,7 +171,9 @@ session.commit()
 
 
 var = Variety(name='Butternut',
-              description="This squash has a very beautiful orange color and is very sweet. Don't forget to save and roast the seeds!",
+              description="This squash has a very beautiful orange color " \
+                          "and is very sweet. " \
+                          "Don't forget to save and roast the seeds!",
               food=squash,
               characteristics=[storage, sweet],
               picture='https://whatscookingamerica.net/wp-content/uploads/2015/03/Butternut-Squash2.jpg',
@@ -174,7 +182,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Acorn',
-              description="This prettty squash is great for roasting and a perfect side dish for Thanksgiving!",
+              description="This prettty squash is great for roasting " \
+                          "and a perfect side dish for Thanksgiving!",
               food=squash,
               characteristics=[storage, mild, sweet],
               picture='https://assets.blog.foodnetwork.ca/imageserve/wp-content/uploads/sites/6/2017/09/acorn-squash/x.jpg',
@@ -183,7 +192,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Pumpkin',
-              description="This squash is spooky when carved on Halloween, but mild and a natural filling for a pie in the kitchen.",
+              description="This squash is spooky when carved on Halloween, " \
+                          "but mild and a natural filling for a pie in the kitchen.",
               food=squash,
               characteristics=[storage, mild, sweet],
               picture='https://assets.blog.foodnetwork.ca/imageserve/wp-content/uploads/sites/6/2017/09/sugar-pumpkin/x.jpg',
@@ -192,7 +202,9 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Delicata',
-              description="As the name suggests, this squash is delicate and very creamy. Absolutely delicious roasted.",
+              description="As the name suggests, " \
+                          "this squash is delicate and very creamy." \
+                          " Absolutely delicious roasted.",
               food=squash,
               characteristics=[sweet, tangy],
               picture='https://holycowvegan.net/wp-content/uploads/2016/09/delicata-squash-1.jpg',
@@ -208,7 +220,8 @@ session.add(squash)
 session.commit()
 
 var = Variety(name='Flavor Giant',
-              description="The name ain't lying! A delicious sweet-tart flavor that harvests very early.",
+              description="The name ain't lying! A delicious sweet-tart " \
+                          "flavor that harvests very early.",
               food=apricot,
               characteristics=[sweet, tart, juicy],
               picture='http://www.davewilson.com/sites/default/files/styles/product/public/products/full/flavor_giant.jpg?itok=4EvL-cIJ',
@@ -227,7 +240,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Brittany Gold',
-              description="These apricots are VERY hardy, but difficult to grow.",
+              description="These apricots are VERY hardy, " \
+                          "but difficult to grow.",
               food=apricot,
               characteristics=[sweet, storage, juicy],
               picture='https://smhttp-ssl-17653.nexcesscdn.net/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/b/r/brittany-gold-rw07.jpg',
@@ -243,7 +257,8 @@ session.add(squash)
 session.commit()
 
 var = Variety(name='Cavendish',
-              description="These are the most popular bananas in the Western world. Get noticeably sweeter as they ripen.",
+              description="These are the most popular bananas in the Western" \
+                          " world. Get noticeably sweeter as they ripen.",
               food=banana,
               characteristics=[mild, tangy],
               picture='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cavendish_Banana_DS.jpg/800px-Cavendish_Banana_DS.jpg',
@@ -252,7 +267,9 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Gros Michel',
-              description="These bananas were once enjoyed worldwide, but are very suspectible to disease. Extremely sweet.",
+              description="These bananas were once enjoyed worldwide, " \
+                          "but are very suspectible to disease. " \
+                          "Extremely sweet.",
               food=banana,
               characteristics=[storage, sweet],
               picture='https://cdn.shopify.com/s/files/1/1294/9917/products/image_1c150b4a-7d30-4aae-bf4c-55f26964cc51_394x.jpg?v=1509732389',
@@ -261,7 +278,8 @@ session.add(var)
 session.commit()
 
 var = Variety(name='Plantain',
-              description="Very starchy, thse bananas must be cooked before eaten. Delicious fried!",
+              description="Very starchy, these bananas must be " \
+                          "cooked before eaten. Delicious fried!",
               food=banana,
               characteristics=[storage, mild],
               picture='https://cdn3.volusion.com/kceqm.mleru/v/vspfiles/photos/166-2T.jpg?1521734349',
