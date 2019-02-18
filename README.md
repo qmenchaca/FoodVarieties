@@ -27,6 +27,9 @@ In order to run this, you will need to install the following:
     * Download here: https://www.vagrantup.com/downloads.html
     * If prompted during installation, grant network permissions to Vagrant.
     * I am using Vagrant version 2.2.2
+* You will need many modules - please check the included requirements.txt
+    * Run the command below to install these modules:
+` pip install -r requirements.txt`
 
 ## Setup
 
