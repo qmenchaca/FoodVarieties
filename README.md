@@ -14,6 +14,10 @@ This can be accessed on the web at:
 
 http://34.223.207.207.xip.io/foods
 
+*If you are a Udacity grader, you can log-in with the following:
+
+`ssh -p 2200 -i <PATH_TO_GRADER_SSH_KEY> ubuntu@34.223.207.207`*
+
 To set this up, I used AWS Lightsail.
 
 I used an instance of Vanilla Ubuntu 16.06 with the following packages installed:
