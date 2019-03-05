@@ -8,6 +8,28 @@
 
 This database allows a user to view/add/edit/delete food and their varietals in a database. Login authorization is handled via a user's Google account. Any user can add/edit/delete foods (except for a few protected ones), but a user can only edit/delete varieties that they created.
 
+## This project is live on the web!
+
+This can be accessed on the web at:
+
+http://34.223.207.207.xip.io/foods
+
+To set this up, I used AWS Lightsail.
+
+I used an instance of Vanilla Ubuntu 16.06 with the following packages installed:
+
+* apache2ctl
+* libapache2-mod-wsgi
+* python-pip
+
+I also needed to install the python modules specified in requirements.txt.
+
+Thanks for checking it out!
+
+
+**However, if you'd like to run this locally yourself, read on...**
+
+
 ## Prerequisites
 
 In order to run this, you will need to install the following:
