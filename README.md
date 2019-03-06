@@ -28,6 +28,24 @@ I used an instance of Vanilla Ubuntu 16.06 with the following packages installed
 
 I also needed to install the python modules specified in requirements.txt.
 
+After that, I checked out my code onto the Lightsail server, and created a wsgi file. The file essentially consists of one line:
+
+`from catalog_project import app as application`
+
+catalog_project is my git code - with the addition of __init__.py, it can be imported as a module.
+
+To get this code working with wsgi, I followed the instructions the in the [Flask documentation](http://flask.pocoo.org/docs/1.0/deploying/mod_wsgi/) by adding necessary lines to the file `/etc/apache2/sites-enabled/000-default.conf`:
+
+```
+   WSGIScriptAlias / /var/www/html/myapp.wsgi
+   WSGIDaemonProcess catalog_project user=<USER_ON_LIGHTSAIL_HERE> \ 
+                                     group=<GROUP_ON_LIGHTSAIL_HERE> threads=5
+```
+
+(Some information redacted for security information.)
+
+Independent research was very helpful in getting this operating. Flask documentation in particular was great in implementing this project on the instance, AWS documentation for setting up the server, and StackOverflow/man pages all throughout the project to make sure I was employing these commands correctly.
+
 Thanks for checking it out!
 
 
